@@ -11,8 +11,8 @@ const generateNodeVersion = (root = process.cwd()) => {
     return a.major - b.major || a.minor - b.minor || a.patch - b.patch
   }).pop()
   console.log(node.version)
-  writePkgField("node", "^" + node.version, "engines")
-  writePkgField("semver", "^7.3.8", "devDependencies")
+  writePkgField("node", ">=" + node.version, "engines")
+  writePkgField("semver", "latest", "devDependencies")
   writePkgField("postinstall", "node ./checkEnv.js", "scripts")
 }
 
