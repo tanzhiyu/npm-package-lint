@@ -1,23 +1,25 @@
 {
   "name": "npm-package-lint",
-  "version": "1.0.2",
+  "version": "1.0.9",
   "type": "module",
   "bin": {
     "npm-package-lint": "bin/index.js"
   },
   "files": [
     "bin",
-    "dist"
+    "dist",
+    "checkEnv.cjs"
   ],
   "scripts": {
     "dev": "rollup -c -w",
     "build": "rollup -c",
     "preview": "vite preview",
-    "v": "node dist/cli.js"
+    "v": "node dist/cli.js",
+    "postinstall": "node ./checkEnv.cjs"
   },
   "devDependencies": {
     "rollup-plugin-json": "^4.0.0",
-    "semver": "^7.3.8",
+    "semver": "latest",
     "typescript": "^4.6.4",
     "vite": "^3.1.0"
   },
@@ -25,5 +27,8 @@
     "cac": "^6.7.14",
     "semver": "^7.3.8",
     "user": "^0.0.0"
+  },
+  "engines": {
+    "node": ">=14.18.0"
   }
 }

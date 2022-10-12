@@ -1,20 +1,29 @@
 import fs from 'fs';
 import path from 'path';
 import semver from 'semver'
+import { fileURLToPath } from 'url';
 
 const generateNodeVersion = (root = process.cwd()) => {
   const versions = traversalDirField(root, "engines")
   console.log("finally  versions is : ", versions)
-  console.log(semver.Range)
   const range = versions.filter(item => !!item && !!item.node).map(item => semver.minVersion(item.node))
   const node = range.sort((a, b) => {
     return a.major - b.major || a.minor - b.minor || a.patch - b.patch
   }).pop()
-  console.log(node.version)
+  console.log(node.version,  path.resolve(path.dirname('')));
+  console.log()
+  fs.copyFile(path.join(path.resolve(fileURLToPath(import.meta.url), '../..'), "checkEnv.cjs"), path.resolve(root, "b.cjs"), (err) => {
+    if (err) {
+      console.log("copy checkEnv.cjs failed: ", err)
+      return
+    }
+    console.log("success Copy! ")
+  })
   writePkgField("node", ">=" + node.version, "engines")
   writePkgField("semver", "latest", "devDependencies")
   writePkgField("postinstall", "node ./checkEnv.js", "scripts")
 }
+
 
 const traversalDirField = (root, field, versions = []) => {
   const nodeModulesDir = path.join(root, "node_modules");
