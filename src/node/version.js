@@ -14,7 +14,7 @@ const generateNodeVersion = (root = process.cwd()) => {
       console.log("copy checkEnv.cjs failed: ", err)
       return
     }
-    console.log("success Copy! ")
+    console.log("success Copy!!!")
   })
   writePkgField("node", ">=" + node.version, "engines")
   console.log("success generate node.js version requirement!")

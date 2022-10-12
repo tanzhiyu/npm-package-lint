@@ -1,6 +1,6 @@
 # npm-package-lint
 
-Compatibility Note: Vite requires Node.js version >=14.6.0. However, some templates require a higher Node.js version to work, please upgrade if your package manager warns about it.
+Compatibility Note: npm-package-lint requires Node.js version >=14.18.0.
 
 # usage
 # npm 6.x
