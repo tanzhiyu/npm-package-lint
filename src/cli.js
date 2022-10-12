@@ -10,8 +10,6 @@ cli.option("-node", "generate node.js version");
 cli.command("generate [root]", "generate root project")
 .option("--type <type>", "generate type")
 .action(async (root, options) => {
-  console.log("root", root)
-  console.log("options", options)
   generateNodeVersion(root)
 })
 
